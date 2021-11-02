@@ -2,14 +2,23 @@
 #program that checks the attendence
 #alter the configuration file
 #--------------------
+
 import pyautogui as pg
 from PIL import Image, ImageGrab
 import time 
 
-time.sleep(1)
-strength = 31
-firstloc = (1751, 118)
-secondloc = (1893, 157)
+
+config = open("config.txt")
+configuration = []
+for i in config:
+    configuration.append(i.strip("\n"))
+
+time.sleep(configuration[0])
+strength = configuration[1]
+floc = configuration[2].split()
+sloc = configuration[2].split()
+firstloc = (floc[0], floc[1])
+secondloc = (sloc[0], sloc[1])
 pg.click(firstloc)
 pg.moveTo(secondloc)
 absent = []
@@ -23,7 +32,7 @@ for i in participants:
         absent.append(i)
     pg.hotkey('ctrl', 'shift', 'backspace')
     
-print("STRENCTH:31")
+print("STRENCTH:", strength)
 print("PRESENT:", strength - len(absent))
 print("ABSENT:", len(absent))
 print("Absentees")
