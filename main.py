@@ -1,4 +1,5 @@
-#star-code6 
+#@mathew4STAR
+#15-9-2021
 #program that checks the attendence
 #alter the configuration file
 #--------------------
