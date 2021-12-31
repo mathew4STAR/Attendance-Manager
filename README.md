@@ -26,6 +26,10 @@ in cmd
 5.Repeat step 3 but instead of hovering over the searchbox hover over your username and over the blue box.
 And replace this value with the third line.
 
+6.You can also change the first line to change the buffer time before the program runs.
+
+Note: *findloc.py* was added to make it easier to find the cordinates on the screen
+
  
 # Usage
 1.Open Zoom and open the participants list
@@ -33,4 +37,6 @@ And replace this value with the third line.
 2.Open cmd and change the directory
 
 3.Run the file
-`python3 main.py`
+`python3 main.py` <br>
+
+`Note you may have to make small changes to the program for your use case, this program may have errors.`
