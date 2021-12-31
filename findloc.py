@@ -6,4 +6,6 @@ buffer = 5
 
 time.sleep(buffer)
 
-print(pag.position())
+locx, locy = pag.position()
+
+print(str(locx) + ' ' + str(locy))
