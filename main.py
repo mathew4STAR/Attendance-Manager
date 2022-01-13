@@ -14,12 +14,12 @@ configuration = []
 for i in config:
     configuration.append(i.strip("\n"))
 
-time.sleep(configuration[0])
-strength = configuration[1]
+time.sleep(int(configuration[0]))
+strength = int(configuration[1])
 floc = configuration[2].split()
-sloc = configuration[2].split()
-firstloc = (floc[0], floc[1])
-secondloc = (sloc[0], sloc[1])
+sloc = configuration[3].split()
+firstloc = (int(floc[0]), int(floc[1]))
+secondloc = (int(sloc[0]), int(sloc[1]))
 pg.click(firstloc)
 pg.moveTo(secondloc)
 absent = []
