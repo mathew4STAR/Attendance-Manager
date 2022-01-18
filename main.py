@@ -7,8 +7,12 @@
 import pyautogui as pg
 from PIL import Image, ImageGrab
 import time 
+import tkinter as tk
 
 
+root = tk.Tk()
+
+label = tk.Label(root, text="hello welcome to this program")
 config = open("config.txt")
 configuration = []
 for i in config:
@@ -39,3 +43,5 @@ print("ABSENT:", len(absent))
 print("Absentees")
 print(absent)
 input('Press enter to close the application')
+
+root.mainloop()
