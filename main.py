@@ -5,8 +5,33 @@
 #--------------------
 
 import pyautogui as pg
-from PIL import Image, ImageGrab
+from PIL import ImageGrab
 import tkinter as tk
+import time
+import tkinter as tk
+
+
+class LineNumbers(tk.Text):
+    def __init__(self, master, text_widget, **kwargs):
+        super().__init__(master, **kwargs)
+
+        self.text_widget = text_widget
+        self.text_widget.bind('<KeyPress>', self.on_key_press)
+
+        self.insert(1.0, '1')
+        self.configure(state='disabled')
+
+    def on_key_press(self, event=None):
+        final_index = str(self.text_widget.index(tk.END))
+        num_of_lines = final_index.split('.')[0]
+        line_numbers_string = "\n".join(str(no + 1) for no in range(int(num_of_lines)))
+        width = len(str(num_of_lines))
+
+        self.configure(state='normal', width=width)
+        self.delete(1.0, tk.END)
+        self.insert(1.0, line_numbers_string)
+        self.configure(state='disabled')
+
 
 def addclass(classs, div, data):
     f = open(("data//" + classs + div + ".txt"), "w+")
@@ -14,7 +39,7 @@ def addclass(classs, div, data):
     f.close()
 
 def check_attendance(configuration, target):
-    #time.sleep(int(configuration[0]))
+    time.sleep(int(configuration[0]))
     strength = int(configuration[1])
     floc = configuration[2].split()
     sloc = configuration[3].split()
@@ -45,6 +70,9 @@ def check_attendance(configuration, target):
     
 
 root = tk.Tk()
+root.geometry("960x540")
+root.minsize(960, 540)
+root.maxsize(960, 540)
 intro = tk.Label(root, text="hello welcome to this program")
 intro.pack()
 config = open("data//config.txt")
@@ -66,8 +94,9 @@ thesection.insert(0, "Please enter the section if you want to add a new class to
 children = tk.Text(root, height=20, width=100)
 theclass.pack()
 thesection.pack()
-children.pack()
+children.pack(expand= 1)
 
 classadder = tk.Button(root, text= "Add a class", command= lambda: addclass(theclass.get(), thesection.get(), children.get("1.0", "end-1c")))
 classadder.pack()
+
 root.mainloop()
