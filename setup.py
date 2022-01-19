@@ -1,13 +1,10 @@
-from ctypes import alignment
 import tkinter as tk
-from turtle import color
-
 
 print("welcome to setup")
 
 root = tk.Tk()
 
-root.size((1920, 1080))
+root.size()
 
 label = tk.Label(root, text="hello welcome to the setup")
 label.pack()
