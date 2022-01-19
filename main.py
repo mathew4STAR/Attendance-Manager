@@ -4,10 +4,8 @@
 #alter the configuration file
 #--------------------
 
-from tabnanny import check
 import pyautogui as pg
 from PIL import Image, ImageGrab
-import time 
 import tkinter as tk
 
 def addclass(classs, div, data):
@@ -57,8 +55,10 @@ for i in config:
 check_class = tk.Entry(root)
 check_class.insert(0, "Please enter the class:")
 check_class.pack()
+
 attenddence_initiate = tk.Button(root, text= "START PROCESS", command= lambda: check_attendance(configuration, check_class.get()))
 attenddence_initiate.pack()
+
 theclass = tk.Entry(root)
 theclass.insert(0, "Please enter the class if you want to add a new class to the database")
 thesection = tk.Entry(root)
@@ -67,6 +67,7 @@ children = tk.Text(root, height=20, width=100)
 theclass.pack()
 thesection.pack()
 children.pack()
+
 classadder = tk.Button(root, text= "Add a class", command= lambda: addclass(theclass.get(), thesection.get(), children.get("1.0", "end-1c")))
 classadder.pack()
 root.mainloop()
