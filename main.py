@@ -85,8 +85,14 @@ for i in config:
 
 attenddence_initiate = tk.Button(scene1, text= "START PROCESS",height=2, width=20 ,command= lambda: check_attendance(configuration, check_class.get())).place(x =100, y =210)
 
+scene_2_button = tk.Button(scene1, text = "Edit classes list")
+scene_2_button.place(x = 840, y = 24)
 
-check_class = tk.OptionMenu(scene1, "what", "one", "two").place(x = 280, y = 210)
+clicked = tk.StringVar()
+clicked.set("10A")
+check_class = tk.OptionMenu(scene1, clicked, "9B", "7D", "10B")
+check_class.config(width=1, height = 2)
+check_class.place(x = 280, y = 210)
 #check_class.insert(0, "Please enter the class:")
 
 
