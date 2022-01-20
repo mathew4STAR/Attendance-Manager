@@ -77,30 +77,30 @@ bg = tk.PhotoImage(file = "data//image1.png")
 scene1 = tk.Canvas(root)
 scene1.pack(fill="both", expand = True)
 scene1.create_image(0, 0, image = bg, anchor = "nw")
-intro = tk.Label(scene1, text="hello welcome to this program")
-intro.pack()
 config = open("data//config.txt")
 configuration = []
 for i in config:
     configuration.append(i.strip("\n"))
 
-check_class = tk.Entry(scene1)
-check_class.insert(0, "Please enter the class:")
-check_class.pack()
 
-attenddence_initiate = tk.Button(scene1, text= "START PROCESS", command= lambda: check_attendance(configuration, check_class.get()))
-attenddence_initiate.pack()
+attenddence_initiate = tk.Button(scene1, text= "START PROCESS",height=2, width=20 ,command= lambda: check_attendance(configuration, check_class.get())).place(x =100, y =210)
 
-theclass = tk.Entry(scene1)
-theclass.insert(0, "Please enter the class if you want to add a new class to the database")
-thesection = tk.Entry(scene1)
-thesection.insert(0, "Please enter the section if you want to add a new class to the database")
-children = tk.Text(scene1, height=20, width=100)
-theclass.pack()
-thesection.pack()
-children.pack(expand= 1)
 
-classadder = tk.Button(root, text= "Add a class", command= lambda: addclass(theclass.get(), thesection.get(), children.get("1.0", "end-1c")))
-classadder.pack()
+check_class = tk.OptionMenu(scene1, "what", "one", "two").place(x = 280, y = 210)
+#check_class.insert(0, "Please enter the class:")
+
+
+
+#theclass = tk.Entry(scene1)
+#theclass.insert(0, "Please enter the class if you want to add a new class to the database")
+#thesection = tk.Entry(scene1)
+#thesection.insert(0, "Please enter the section if you want to add a new class to the database")
+#children = tk.Text(scene1, height=20, width=100)
+#theclass.pack()
+#thesection.pack()
+#children.pack(expand= 1)
+
+#classadder = tk.Button(root, text= "Add a class", command= lambda: addclass(theclass.get(), thesection.get(), children.get("1.0", "end-1c")))
+#classadder.pack()
 
 root.mainloop()
