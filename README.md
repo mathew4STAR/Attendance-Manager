@@ -40,3 +40,4 @@ Note: *findloc.py* was added to make it easier to find the cordinates on the scr
 `python3 main.py` <br>
 
 `Note you may have to make small changes to the program for your use case, this program may have errors.`
+`Note the project documentation may not be right since project is going under lot of development, it will be updated later`
