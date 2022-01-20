@@ -48,7 +48,7 @@ def check_attendance(configuration, target):
     pg.click(firstloc)
     pg.moveTo(secondloc)
     absent = []
-    participants = open("data//" + target + ".txt")
+    participants = open("data//classes" + target + ".txt")
     for i in participants:
         i = i.strip("\n")
         pg.write(i)
