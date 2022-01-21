@@ -48,7 +48,7 @@ def check_attendance(configuration, target):
     pg.click(firstloc)
     pg.moveTo(secondloc)
     absent = []
-    participants = open("data//classes" + target + ".txt")
+    participants = open("data//classes//" + target + ".txt")
     for i in participants:
         i = i.strip("\n")
         pg.write(i)
@@ -64,16 +64,18 @@ def check_attendance(configuration, target):
     print("Absentees")
     print(absent)
     final = ""
+    thebox.delete("1.0","end")
     for i in absent:
         final = final + i + " "
-    children.insert(tk.END, final)
+    finalfinal = "STRENGTH: " + str(strength) + "\n" + "PRESENT: " + str(strength - len(absent)) + "\n" + "ABSENT: " + str(len(absent)) + "\n" + final
+    thebox.insert(tk.END, finalfinal)
     
 
 root = tk.Tk()
 root.geometry("960x540")
 root.minsize(960, 540)
 root.maxsize(960, 540)
-bg = tk.PhotoImage(file = "data//image2.png")
+bg = tk.PhotoImage(file = "data//image3.png")
 scene1 = tk.Canvas(root)
 scene1.pack(fill="both", expand = True)
 scene1.create_image(0, 0, image = bg, anchor = "nw")
@@ -82,8 +84,8 @@ configuration = []
 for i in config:
     configuration.append(i.strip("\n"))
 
-
-attenddence_initiate = tk.Button(scene1, text= "START PROCESS",height=2, width=20 ,command= lambda: check_attendance(configuration, check_class.get())).place(x =100, y =210)
+attendance_btn_img = tk.PhotoImage(file="data//attendance_new.png")
+attenddence_initiate = tk.Button(scene1, image= attendance_btn_img, borderwidth=0,command= lambda: check_attendance(configuration, clicked.get())).place(x =110, y =230)
 
 scene_2_button = tk.Button(scene1, text = "Edit classes list")
 scene_2_button.place(x = 840, y = 24)
@@ -91,8 +93,13 @@ scene_2_button.place(x = 840, y = 24)
 clicked = tk.StringVar()
 clicked.set("10A")
 check_class = tk.OptionMenu(scene1, clicked, "9B", "7D", "10B")
-check_class.config(width=1, height = 2)
-check_class.place(x = 280, y = 210)
+check_class.config(width=1, height = 2, bg="#2D8CFF", fg="white")
+check_class.place(x = 270, y = 230)
+
+thebox = tk.Text(scene1, height = 8, width = 27 )
+thebox.insert(tk.END, "Attendance not calculated yet.")
+thebox.bind("<Key>", lambda e: "break")
+thebox.place(x = 542, y = 290)
 #check_class.insert(0, "Please enter the class:")
 
 
