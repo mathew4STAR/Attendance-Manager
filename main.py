@@ -4,11 +4,20 @@
 #alter the configuration file
 #--------------------
 
+from turtle import left
 import pyautogui as pg
 from PIL import ImageGrab
 import tkinter as tk
 import time
 
+
+def gotoscene2():
+    scene1.forget()
+    scene2.pack(fill="both", expand= True)
+
+def gotoscene1():
+    scene2.forget()
+    scene1.pack(fill="both", expand = True)
 
 class LineNumbers(tk.Text):
     def __init__(self, master, text_widget, **kwargs):
@@ -33,7 +42,7 @@ class LineNumbers(tk.Text):
 
 
 def addclass(classs, div, data):
-    f = open(("data//" + classs + div + ".txt"), "w+")
+    f = open(("data//classes" + classs + div + ".txt"), "w+")
     f.write(data)
     f.close()
 
@@ -90,9 +99,43 @@ for i in config:
 attendance_btn_img = tk.PhotoImage(file="data//attendance_new.png")
 attenddence_initiate = tk.Button(scene1, image= attendance_btn_img, borderwidth=0,command= lambda: check_attendance(configuration, clicked.get())).place(x =110, y =230)
 
-scene_2_button = tk.Button(scene1, text = "Edit classes list")
+
+scene2 = tk.Frame(root)
+scene2.pack(fill = "both", expand = True)
+scene_2_button = tk.Button(scene1, text = "Edit classes list", command = gotoscene2)
 scene_2_button.place(x = 840, y = 24)
 
+scene_1_button = tk.Button(scene2, text="back", command = gotoscene1)
+scene_1_button.pack(anchor=tk.NW)
+
+newlabel = tk.Label(scene2, text="Add a class")
+newlabel.pack()
+
+classlabel = tk.Label(scene2, text = "Class: ")
+classlabel.pack(anchor=tk.W, pady = (30, 0))
+#classlabel.place(x = 270, y = 230)
+
+
+classentry = tk.Entry(scene2)
+#classentry.place(x = 300, y = 230)
+classentry.pack(anchor=tk.W)
+
+sectionlabel = tk.Label(scene2, text = "Section: ")
+sectionlabel.pack(anchor=tk.W, pady = (10, 0))
+#classlabel.place(x = 270, y = 230)
+
+
+sectionentry = tk.Entry(scene2)
+#classentry.place(x = 300, y = 230)
+sectionentry.pack(anchor=tk.W)
+
+children = tk.Text(scene2, height=10, width=100)
+children.pack()
+
+classadder = tk.Button(scene2, text= "Add a class", command= lambda: addclass(classentry.get(), sectionentry.get(), children.get("1.0", "end-1c")))
+classadder.pack()
+
+scene2.forget()
 clicked = tk.StringVar()
 clicked.set("10A")
 check_class = tk.OptionMenu(scene1, clicked, *classess)
