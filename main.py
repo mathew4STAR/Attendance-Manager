@@ -8,7 +8,6 @@ import pyautogui as pg
 from PIL import ImageGrab
 import tkinter as tk
 import time
-import tkinter as tk
 
 
 class LineNumbers(tk.Text):
@@ -79,6 +78,10 @@ bg = tk.PhotoImage(file = "data//image3.png")
 scene1 = tk.Canvas(root)
 scene1.pack(fill="both", expand = True)
 scene1.create_image(0, 0, image = bg, anchor = "nw")
+classes = open("data//classes.txt")
+classess = []
+for i in classes:
+    classess.append(i.strip("\n"))
 config = open("data//config.txt")
 configuration = []
 for i in config:
@@ -92,7 +95,7 @@ scene_2_button.place(x = 840, y = 24)
 
 clicked = tk.StringVar()
 clicked.set("10A")
-check_class = tk.OptionMenu(scene1, clicked, "9B", "7D", "10B")
+check_class = tk.OptionMenu(scene1, clicked, *classess)
 check_class.config(width=1, height = 2, bg="#2D8CFF", fg="white")
 check_class.place(x = 270, y = 230)
 
