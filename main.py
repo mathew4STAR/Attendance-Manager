@@ -4,7 +4,6 @@
 #alter the configuration file
 #--------------------
 
-from turtle import left
 import pyautogui as pg
 from PIL import ImageGrab
 import tkinter as tk
@@ -101,14 +100,16 @@ attenddence_initiate = tk.Button(scene1, image= attendance_btn_img, borderwidth=
 
 
 scene2 = tk.Frame(root)
+scene2_2 = tk.Frame(scene2)
 scene2.pack(fill = "both", expand = True)
+scene2_2.pack(fill="both", expand = True)
 scene_2_button = tk.Button(scene1, text = "Edit classes list", command = gotoscene2)
 scene_2_button.place(x = 840, y = 24)
 
-scene_1_button = tk.Button(scene2, text="back", command = gotoscene1)
+scene_1_button = tk.Button(scene2, text="Back", command = gotoscene1, bg = "#2D8CFF", fg="white")
 scene_1_button.pack(anchor=tk.NW)
 
-newlabel = tk.Label(scene2, text="Add a class")
+newlabel = tk.Label(scene2, text="Add a class", bg= "#2D8CFF", fg = "white", height= 2, width=10, font="bold")
 newlabel.pack()
 
 classlabel = tk.Label(scene2, text = "Class: ")
@@ -120,14 +121,17 @@ classentry = tk.Entry(scene2)
 #classentry.place(x = 300, y = 230)
 classentry.pack(anchor=tk.W)
 
-sectionlabel = tk.Label(scene2, text = "Section: ")
+sectionlabel = tk.Label(scene2_2, text = "Section: ")
 sectionlabel.pack(anchor=tk.W, pady = (10, 0))
 #classlabel.place(x = 270, y = 230)
 
 
-sectionentry = tk.Entry(scene2)
+sectionentry = tk.Entry(scene2_2)
 #classentry.place(x = 300, y = 230)
 sectionentry.pack(anchor=tk.W)
+
+sectionlabel.grid(row=0, column=0)
+sectionentry.grid(row=0, column=1)
 
 children = tk.Text(scene2, height=10, width=100)
 children.pack()
