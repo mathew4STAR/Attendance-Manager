@@ -32,7 +32,7 @@ in cmd
 
 1. Run *findloc.py* and search bar. The program should record your current mouse position after 5 seconds. The recording should print in the console copy it and paste it in the third line *config.txt*
 
-2. Repeat step 3 but instead of hovering over the searchbox hover over your username and over the blue box.
+2. Repeat step 1 but instead of hovering over the searchbox hover over your username and over the blue box.
 And replace this value with the third line.
 
 Note: *findloc.py* was added to make it easier to find the cordinates on the screen
@@ -48,8 +48,8 @@ Note: *findloc.py* was added to make it easier to find the cordinates on the scr
 
 4. Once the GUI opens, click on `T1` and choose the class you want to check for.
 
-5. Click on  `CHECK ATTENDANCE`.
+5. Click on  `CHECK ATTENDANCE` button.
 
-6. The program should print a list of participants and absentees. 
+6. The program should print a list of participants and absentees in the Text box below the picture. 
 
 `Note you may have to make small changes to the program for your use case, this program may have errors.`
