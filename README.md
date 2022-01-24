@@ -1,43 +1,55 @@
 # Attendence-Manager
--This is a program to check **attendence** of zoom classes
--The program checks attendence with a list of student and returns the people who are absent
+- This is a program to check **attendence** of zoom classes
+- The program checks attendence with a list of student and returns the people who are absent
+- version 2
 
 # Installation
-1.to clone the repo type:
+1. To clone the repo type:
 `git clone https://github.com/mathew4STAR/Attendence-Manager`
 in cmd
 
-2.change the directory
+2. change the directory
 `cd Attendece-Manager`
 
-3.run the file 
+3. run the file 
 `python3 main.py`
 
 # Setup
 
-1.Open the *kids.txt* file and add all the names of the students in class (the attendence will be checked with these names so make sure to keep the same name with which they attend class)
+1. Run the main file
 
-2.Open a sample zoom meeting and open the participants list.
+2. When the GUI opens click on `edit classes list`
 
-3.Change the second line in config file with your class stregth.
+3. Enter the class and section followed by the name of the students in that class (this has to be the same name they enter the zoom classes with) in the boxes. (This step has to be done every time a new class is added) (Every time you add a class please reload the program)
 
-4.Run *findloc.py* and search bar. The program should record your current mouse position after 5 seconds. The recording should print in the console copy it and paste it in the third line *config.txt*
+4. Change the second line in config file with your class stregth.
 
-5.Repeat step 3 but instead of hovering over the searchbox hover over your username and over the blue box.
+5. You can also change the first line if you want to add a buffer before the program starts running.
+
+# Additional Setup
+
+`This needs to be done only if there is a problem when the program is run (incase the program misclicks) `
+
+1. Run *findloc.py* and search bar. The program should record your current mouse position after 5 seconds. The recording should print in the console copy it and paste it in the third line *config.txt*
+
+2. Repeat step 3 but instead of hovering over the searchbox hover over your username and over the blue box.
 And replace this value with the third line.
-
-6.You can also change the first line to change the buffer time before the program runs.
 
 Note: *findloc.py* was added to make it easier to find the cordinates on the screen
 
  
 # Usage
-1.Open Zoom and open the participants list
+1. Open Zoom and open the participants list
 
-2.Open cmd and change the directory
+2. Open cmd and change the directory
 
-3.Run the file
-`python3 main.py` <br>
+3. Run the file
+`python3 main.py`
+
+4. Once the GUI opens, click on `T1` and choose the class you want to check for.
+
+5. Click on  `CHECK ATTENDANCE`.
+
+6. The program should print a list of participants and absentees. 
 
 `Note you may have to make small changes to the program for your use case, this program may have errors.`
-`Note the project documentation may not be right since project is going under lot of development, it will be updated later`
