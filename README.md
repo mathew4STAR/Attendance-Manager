@@ -14,6 +14,8 @@ in cmd
 3. run the file 
 `python3 main.py`
 
+`alternatively you could install one of the releases (the latest version is recommended)`
+
 # Setup
 
 1. Run the main file
@@ -30,7 +32,7 @@ in cmd
 
 `This needs to be done only if there is a problem when the program is run (in case the program misclicks) `
 
-1. Run *findloc.py* and search bar. The program should record your current mouse position after 5 seconds. The recording should print in the console copy it and paste it into the third line in *config.txt*
+1. Run *findloc.py* and hover over the search bar. The program should record your current mouse position after 5 seconds. The recording should print in the console copy it and paste it into the third line in *config.txt*
 
 2. Repeat step 1 but instead of hovering over the search box, hover over your username and the blue box.
 And replace this value with the third line.
