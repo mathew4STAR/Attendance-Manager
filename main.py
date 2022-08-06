@@ -6,31 +6,32 @@
 
 import time
 import tkinter as tk
+from turtle import heading
 import pyautogui as pg
 from PIL import ImageGrab
 
 
-def gotoscene2():
+def gotoscene2():#scene for adding classes
     scene1.forget()
     scene2.pack(fill="both", expand=True)
 
 
-def gotoscene1():
+def gotoscene1():#main scene
     scene2.forget()
     scene1.pack(fill="both", expand=True)
 
 
-def addclass(classs, div, data):
-    omclass = open(("data//classes//" + classs + div + ".txt"), "w+")
-    omclass.write(data)
-    omclass.close()
-    newclassadd = open("data//classes.txt", "a")
-    newclassadd.write("\n" + classs + div)
+def addclass(classs, div, data):#funciton for adding classes
+    newclass = open(("data//classes//" + classs + div + ".txt"), "w+")
+    newclass.write(data)
+    newclass.close()
+    newclassname = open("data//classes.txt", "a")
+    newclassname.write("\n" + classs + div)
 
 
-def check_attendance(configuration, target):
+def check_attendance(configuration, target):#function for checking attendence
     time.sleep(int(configuration[0]))
-    strength = int(configuration[1])
+    class_strength = int(configuration[1])
     floc = configuration[2].split()
     sloc = configuration[3].split()
     firstloc = (int(floc[0]), int(floc[1]))
@@ -38,34 +39,67 @@ def check_attendance(configuration, target):
     pg.click(firstloc)
     pg.moveTo(secondloc)
     absent = []
+    maybe_present = []
     participants = open("data//classes//" + target + ".txt")
     for i in participants:
         i = i.strip("\n")
+        num_of_backspace = len(i.split())
         pg.write(i)
         image = ImageGrab.grab()
         color = image.getpixel(secondloc)
         if color == (255, 255, 255):
             absent.append(i)
-        pg.hotkey("ctrl", "shift", "backspace")
-
+        while num_of_backspace > 0:
+            pg.hotkey("ctrl", "shift", "backspace")
+            num_of_backspace -= 1
+            if num_of_backspace == 1:
+                image = ImageGrab.grab()
+                color = image.getpixel(secondloc)
+                if color != (255, 255, 255):
+                    maybe_present.append(i)
+    maybe_present_ = []
+    for i in maybe_present:
+        if i in absent:
+            print(i)
+            maybe_present_.append(i)
+    '''
+    maybe_present = []
+    for i in absent:
+        name = i.split()[0]
+        pg.write(name)
+        image = ImageGrab.grab()
+        color = image.getpixel(secondloc)
+        if color != (255, 255, 255):
+            maybe_present.append(i)
+        pg.hotkey('ctrl', 'shift', 'backspace')
+    '''
     final = ""
+    maybepresent = ""
     thebox.delete("1.0", "end")
     for i in absent:
         final = final + i + " "
+    for i in maybe_present_:
+        maybepresent = maybepresent + i + " "
     finalfinal = (
         "STRENGTH: "
-        + str(strength)
+        + str(class_strength)
         + "\n"
         + "PRESENT: "
-        + str(strength - len(absent))
+        + str(class_strength - len(absent))
         + "\n"
         + "ABSENT: "
         + str(len(absent))
         + "\n"
         + final
+        + "\n"
+        + "-----------\n"
+        + "MAYBE PRESENT(FIRST NAME FOUND)"
+        + "\n"
+        + maybepresent
     )
     thebox.insert(tk.END, finalfinal)
 
+#gui----
 
 root = tk.Tk()
 root.geometry("960x540")
@@ -86,7 +120,7 @@ for i in config:
     configuration.append(i.strip("\n"))
 
 attendance_btn_img = tk.PhotoImage(file="data//attendance_new.png")
-attenddence_initiate = tk.Button(
+attendance_initiate = tk.Button(
     scene1,
     image=attendance_btn_img,
     borderwidth=0,
@@ -104,7 +138,7 @@ scene_1_button = tk.Button(
 )
 scene_1_button.pack(anchor=tk.NW)
 
-newlabel = tk.Label(
+Heading = tk.Label(
     scene2,
     text="Add a class",
     bg="#2D8CFF",
@@ -113,7 +147,7 @@ newlabel = tk.Label(
     width=10,
     font="bold",
 )
-newlabel.pack()
+Heading.pack()
 
 classlabel = tk.Label(scene2, text="Class: ")
 classlabel.place(x=70, y=120)
