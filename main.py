@@ -6,7 +6,6 @@
 
 import time
 import tkinter as tk
-from turtle import heading
 import pyautogui as pg
 from PIL import ImageGrab
 
