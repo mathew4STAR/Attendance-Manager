@@ -30,19 +30,21 @@ def addclass(classs, div, data):#funciton for adding classes
 
 def check_attendance(configuration, target):#function for checking attendence
     time.sleep(int(configuration[0]))
-    class_strength = int(configuration[1])
-    floc = configuration[2].split()
-    sloc = configuration[3].split()
+    floc = configuration[1].split()
+    sloc = configuration[2].split()
     firstloc = (int(floc[0]), int(floc[1]))
     secondloc = (int(sloc[0]), int(sloc[1]))
     pg.click(firstloc)
     pg.moveTo(secondloc)
     absent = []
     maybe_present = []
-    participants = open("data//classes//" + target + ".txt")
+    participant = open("data//classes//" + target + ".txt", "r")
+    participants = participant.readlines()
+    class_strength = len(participants)
     for i in participants:
         i = i.strip("\n")
         num_of_backspace = len(i.split())
+        #print(i)
         pg.write(i)
         image = ImageGrab.grab()
         color = image.getpixel(secondloc)
@@ -50,6 +52,7 @@ def check_attendance(configuration, target):#function for checking attendence
             absent.append(i)
         while num_of_backspace > 0:
             pg.hotkey("ctrl", "shift", "backspace")
+            pg.hotkey("backspace")
             num_of_backspace -= 1
             if num_of_backspace == 1:
                 image = ImageGrab.grab()
@@ -59,7 +62,7 @@ def check_attendance(configuration, target):#function for checking attendence
     maybe_present_ = []
     for i in maybe_present:
         if i in absent:
-            print(i)
+            #print(i)
             maybe_present_.append(i)
     '''
     maybe_present = []
@@ -75,26 +78,37 @@ def check_attendance(configuration, target):#function for checking attendence
     final = ""
     maybepresent = ""
     thebox.delete("1.0", "end")
+    odds = []
+    oddsy = ""
+    for i in absent:
+        if i not in maybe_present:
+            odds.append(i)
+    '''
     for i in absent:
         final = final + i + " "
     for i in maybe_present_:
         maybepresent = maybepresent + i + " "
+    for i in odds:
+        oddsy = oddsy + i + " "
+    '''
+    final = ",".join(absent)
+    maybepresent = ",".join(maybe_present_)
+    oddsy = ','.join(odds)
     finalfinal = (
         "STRENGTH: "
         + str(class_strength)
         + "\n"
         + "PRESENT: "
-        + str(class_strength - len(absent))
+        + str(class_strength - len(odds))
         + "\n"
-        + "ABSENT: "
-        + str(len(absent))
+        + "DEFINETELY ABSENT(FIRST NAME NOT FOUND):"
         + "\n"
-        + final
+        + oddsy
         + "\n"
         + "-----------\n"
-        + "MAYBE PRESENT(FIRST NAME FOUND)"
+        + "MAYBE ABSENT(FULL NAME NOT FOUND):"
         + "\n"
-        + maybepresent
+        + final
     )
     thebox.insert(tk.END, finalfinal)
 
