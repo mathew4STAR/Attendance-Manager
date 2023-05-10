@@ -64,17 +64,6 @@ def check_attendance(configuration, target):#function for checking attendence
         if i in absent:
             #print(i)
             maybe_present_.append(i)
-    '''
-    maybe_present = []
-    for i in absent:
-        name = i.split()[0]
-        pg.write(name)
-        image = ImageGrab.grab()
-        color = image.getpixel(secondloc)
-        if color != (255, 255, 255):
-            maybe_present.append(i)
-        pg.hotkey('ctrl', 'shift', 'backspace')
-    '''
     final = ""
     maybepresent = ""
     thebox.delete("1.0", "end")
@@ -83,14 +72,6 @@ def check_attendance(configuration, target):#function for checking attendence
     for i in absent:
         if i not in maybe_present:
             odds.append(i)
-    '''
-    for i in absent:
-        final = final + i + " "
-    for i in maybe_present_:
-        maybepresent = maybepresent + i + " "
-    for i in odds:
-        oddsy = oddsy + i + " "
-    '''
     final = ",".join(absent)
     maybepresent = ",".join(maybe_present_)
     oddsy = ','.join(odds)
