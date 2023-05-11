@@ -10,17 +10,17 @@ import pyautogui as pg
 from PIL import ImageGrab
 
 
-def gotoscene2():#scene for adding classes
+def gotoscene2():  # scene for adding classes
     scene1.forget()
     scene2.pack(fill="both", expand=True)
 
 
-def gotoscene1():#main scene
+def gotoscene1():  # main scene
     scene2.forget()
     scene1.pack(fill="both", expand=True)
 
 
-def addclass(classs, div, data):#funciton for adding classes
+def addclass(classs, div, data):  # funciton for adding classes
     newclass = open(("data//classes//" + classs + div + ".txt"), "w+")
     newclass.write(data)
     newclass.close()
@@ -28,7 +28,7 @@ def addclass(classs, div, data):#funciton for adding classes
     newclassname.write("\n" + classs + div)
 
 
-def check_attendance(configuration, target):#function for checking attendence
+def check_attendance(configuration, target):  # function for checking attendence
     time.sleep(int(configuration[0]))
     floc = configuration[1].split()
     sloc = configuration[2].split()
@@ -44,7 +44,6 @@ def check_attendance(configuration, target):#function for checking attendence
     for i in participants:
         i = i.strip("\n")
         num_of_backspace = len(i.split())
-        #print(i)
         pg.write(i)
         image = ImageGrab.grab()
         color = image.getpixel(secondloc)
@@ -62,7 +61,7 @@ def check_attendance(configuration, target):#function for checking attendence
     maybe_present_ = []
     for i in maybe_present:
         if i in absent:
-            #print(i)
+            # print(i)
             maybe_present_.append(i)
     final = ""
     maybepresent = ""
@@ -74,7 +73,7 @@ def check_attendance(configuration, target):#function for checking attendence
             odds.append(i)
     final = ",".join(absent)
     maybepresent = ",".join(maybe_present_)
-    oddsy = ','.join(odds)
+    oddsy = ",".join(odds)
     finalfinal = (
         "STRENGTH: "
         + str(class_strength)
@@ -93,7 +92,8 @@ def check_attendance(configuration, target):#function for checking attendence
     )
     thebox.insert(tk.END, finalfinal)
 
-#gui----
+
+# gui----
 
 root = tk.Tk()
 root.geometry("960x540")
