@@ -28,12 +28,17 @@ def addclass(classs, div, data):  # funciton for adding classes
     newclassname.write("\n" + classs + div)
 
 
-def check_attendance(configuration, target):  # function for checking attendence
+def check_attendance(configuration, target, modes):  # function for checking attendence
     time.sleep(int(configuration[0]))
     floc = configuration[1].split()
     sloc = configuration[2].split()
-    firstloc = (int(floc[0]), int(floc[1]))
-    secondloc = (int(sloc[0]), int(sloc[1]))
+    if modes == "C":
+        firstloc = (int(floc[0]), int(floc[1]))
+        secondloc = (int(sloc[0]), int(sloc[1]))
+    else:
+        firstloc = pg.locateCenterOnScreen('Searchbar.png')
+        pg.click(firstloc)
+        secondloc = pg.locateCenterOnScreen('Bluebox.png')
     pg.click(firstloc)
     pg.moveTo(secondloc)
     absent = []
@@ -118,7 +123,7 @@ attendance_initiate = tk.Button(
     scene1,
     image=attendance_btn_img,
     borderwidth=0,
-    command=lambda: check_attendance(configuration, clicked.get()),
+    command=lambda: check_attendance(configuration, clicked.get(), modes.get()),
 ).place(x=110, y=230)
 
 
@@ -175,6 +180,12 @@ clicked.set("T1")
 check_class = tk.OptionMenu(scene1, clicked, *classess)
 check_class.config(width=1, height=2, bg="#2D8CFF", fg="white")
 check_class.place(x=270, y=230)
+
+modes = tk.StringVar()
+modes.set("A")
+mode = tk.OptionMenu(scene1, modes, *["A", "C"])
+mode.config(width=1, height=2, bg="#2D8CFF", fg="white")
+mode.place(x=350, y=230)
 
 thebox = tk.Text(scene1, height=8, width=27)
 thebox.insert(tk.END, "Attendance not calculated yet.")
