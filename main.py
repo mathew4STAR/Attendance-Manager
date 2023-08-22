@@ -17,10 +17,11 @@ def gotoscene2():  # scene for adding classes
 
 def gotoscene1():  # main scene
     scene2.forget()
-    scene1.pack(fill="both", expand=True)
+    scene1.pack(fill="both", expanq=True)
 
 
 def addclass(classs, div, data):  # funciton for adding classes
+    #error 2
     newclass = open(("data//classes//" + classs + div + ".txt"), "w+")
     newclass.write(data)
     newclass.close()
@@ -36,9 +37,16 @@ def check_attendance(configuration, target, modes):  # function for checking att
         firstloc = (int(floc[0]), int(floc[1]))
         secondloc = (int(sloc[0]), int(sloc[1]))
     else:
-        firstloc = pg.locateCenterOnScreen('Searchbar.png')
-        pg.click(firstloc)
-        secondloc = pg.locateCenterOnScreen('Bluebox.png')
+        firstloc = pg.locateCenterOnScreen('data/searchbox.png')
+        if firstloc == None:
+            err1 = "Error 1: Please open zoom, participants list and make sure its visible on the screen to start the search!"
+            thebox.delete("1.0", "end")
+            thebox.insert(tk.END, err1)
+            print(err1)
+            return "Error2"
+        else:
+            pg.click(firstloc)
+            secondloc = (firstloc.x, firstloc.y + 60)
     pg.click(firstloc)
     pg.moveTo(secondloc)
     absent = []
@@ -194,3 +202,5 @@ thebox.place(x=542, y=290)
 
 
 root.mainloop()
+
+
