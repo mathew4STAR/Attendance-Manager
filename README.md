@@ -3,6 +3,8 @@
 - The program checks attendance with a list of students and returns the people who are most proabbly absent.
 - It uses various macros and screen capture methods to quickly check the presence of all the students.
 - version 3
+<img align="up" src="data/Screenshot_1.png">
+
 
 # Installation
 1. To clone the repo type:
